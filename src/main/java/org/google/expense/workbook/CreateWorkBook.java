@@ -2,24 +2,32 @@ package org.google.expense.workbook;
 import java.io.IOException;
 import java.net.URL;
 
+import org.google.expense.GoogleCredentials;
+
 import com.google.gdata.client.docs.DocsService;
 import com.google.gdata.data.PlainTextConstruct;
 import com.google.gdata.data.docs.DocumentListEntry;
 import com.google.gdata.util.ServiceException;
 
-
+/**
+ * This Class use to create New Google Spread Book.
+ * @author Dhanushanth
+ * @version 1.0
+ * 
+ *
+ */
 public class CreateWorkBook {
-	private  String USERNAME;
-	private  String PASSWORD;
+	private  GoogleCredentials credentials;
 	
-	public CreateWorkBook(String username,String passWord){
-		this.USERNAME = username;
-		this.PASSWORD = passWord;
+	public CreateWorkBook(GoogleCredentials credentials){
+		this.credentials = credentials;
 	}
 	
 	public void createSpreadSht(String workBookName,String serviceName) throws IOException, ServiceException{
 		DocsService docsService = new DocsService(serviceName);
-	    docsService.setUserCredentials(USERNAME, PASSWORD);
+		
+		//Set the Credentials 
+	    docsService.setUserCredentials(credentials.getUserName(), credentials.getPassWord());
 	    
 	    //Create new Sheet reference
 	    DocumentListEntry documentListEntry = new com.google.gdata.data.docs.SpreadsheetEntry();

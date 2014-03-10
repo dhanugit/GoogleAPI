@@ -1,5 +1,6 @@
 import java.io.IOException;
 
+import org.google.expense.GoogleCredentials;
 import org.google.expense.workbook.CreateWorkBook;
 
 import com.google.gdata.util.ServiceException;
@@ -7,7 +8,8 @@ import com.google.gdata.util.ServiceException;
 public class CreateSpreadSheetTest {
 
 	public static void main(String[]args) throws IOException, ServiceException{
-		CreateWorkBook c = new CreateWorkBook("dhanushanthp", "qffpaxvyuwclyaev");
+		GoogleCredentials credentials = new GoogleCredentials("dhanushanthp", "qffpaxvyuwclyaev");
+		CreateWorkBook c = new CreateWorkBook(credentials);
 		c.createSpreadSht("MyExpenses","My Service");
 	}
 
